@@ -42,6 +42,9 @@ const color = {
     greenLight: '#66bb6a',
     greenLighter: '#81c784',
     greenLightest: '#a5d6a7',
+
+    googleBlue: '#4285F4',
+    facebookBlue: '#3b5999',
   };
    
   export const theme = {
@@ -52,6 +55,7 @@ const color = {
         md: 18,
         lg: 20,
         xl: 24,
+        '2xl': 32,
       },
       weight: {
         light: '200',
