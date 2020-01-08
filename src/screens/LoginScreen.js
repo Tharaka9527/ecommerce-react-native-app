@@ -4,6 +4,9 @@ import {Image, TouchableOpacity, Alert, Animated} from 'react-native';
 import {images} from '../constants/images';
 import LoginButton from '../comments/LoginButton';
 import Logo from '../comments/Logo';
+import { FacebookApi } from '../api/Facebook';
+
+const BoxAnimated = Animated.createAnimatedComponent(Box);
 
 class LoginScreen extends Component {
   
@@ -34,12 +37,17 @@ class LoginScreen extends Component {
     }).start();
   }
 
-  onGooglePress = () => {
-    Alert.alert('Google Press');
+  onGooglePress =  async () => {
+    
   }
 
   onFacebookPress = () => {
-    Alert.alert('Facebook Press');
+    try {
+      const token = FacebookApi.loginAsync();
+      console.log('token', token);
+    } catch (error) {
+      console.log('error', error);
+    }
   }
 
   render() {
@@ -53,18 +61,18 @@ class LoginScreen extends Component {
     return (
       <Box style={{flex:1, alignItems:'center', justifyContent:'center'}}>
 
-        <Animated.View style={{flex:1, transform: [{
+        <BoxAnimated style={{flex:1, transform: [{
           translateY: logoTranslate,
         }]}}>
           <Box style={{flex:1, alignItems:'center', justifyContent:'center'}}>
             <Logo/>
           </Box>
-        </Animated.View>
+        </BoxAnimated>
         
-        <Animated.View style={{flex:0.9, width: '100%', opacity}}>
+        <BoxAnimated style={{flex:0.9, width: '100%', opacity}}>
           <LoginButton onPress={this.onGooglePress} type="google">Continue with Google</LoginButton>
           <LoginButton onPress={this.onFacebookPress} type="facebook">Continue with Facebook</LoginButton>
-        </Animated.View>
+        </BoxAnimated>
 
       </Box>
     );
